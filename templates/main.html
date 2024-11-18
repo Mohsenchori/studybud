@@ -7,12 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="{% static 'styles/style.css' %}" />
-    <title>StudyBuddy - Find study partners around the world!</title>
+    <title>TOPICMEDIA - Find a topic and join to talk about!</title>
   </head>
 
   <body>
-
+    {% comment %} having a navbar in all pages {% endcomment %}
     {% include 'navbar.html' %}
+
+
+    {% comment %} this block is for showing any posible messages like wrong password {% endcomment %}
     {%if messages %}
     <ul class="messages">
         {% for message in messages %}
@@ -21,6 +24,7 @@
     </ul>
     {% endif %}
 
+    {% comment %} all other pages will be put here {% endcomment %}
     {% block content %}
     {% endblock %}
 

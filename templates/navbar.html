@@ -1,24 +1,33 @@
 {% load static %}
 <header class="header header--loggedIn">
-      <div class="container">
-        <a href="{%url 'homeurl'%}" class="header__logo">
-          <img src="{% static 'images/logo.svg' %}" />
-          <h1>StudyBuddy</h1>
+      
+  <div class="container">
+      
+    {% comment %} go back home {% endcomment %}
+        <a href="{% url 'homeurl' %}" class="header__logo">
+          {% comment %} <img src="{% static 'images/logo.svg' %}" /> {% endcomment %}
+          <h1>TOPICMEDIA</h1>
         </a>
+
+{% comment %} search form {% endcomment %}
         <form class="header__search" method="GET" action="{% url 'homeurl' %}">
           <label>
             <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
               <title>search</title>
-              <path
+              <g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>search</title> <desc>Created with Sketch Beta.</desc> <defs> </defs> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage"> <g id="Icon-Set" sketch:type="MSLayerGroup" transform="translate(-256.000000, -1139.000000)" fill="#000000"> <path d="M269.46,1163.45 C263.17,1163.45 258.071,1158.44 258.071,1152.25 C258.071,1146.06 263.17,1141.04 269.46,1141.04 C275.75,1141.04 280.85,1146.06 280.85,1152.25 C280.85,1158.44 275.75,1163.45 269.46,1163.45 L269.46,1163.45 Z M287.688,1169.25 L279.429,1161.12 C281.591,1158.77 282.92,1155.67 282.92,1152.25 C282.92,1144.93 276.894,1139 269.46,1139 C262.026,1139 256,1144.93 256,1152.25 C256,1159.56 262.026,1165.49 269.46,1165.49 C272.672,1165.49 275.618,1164.38 277.932,1162.53 L286.224,1170.69 C286.629,1171.09 287.284,1171.09 287.688,1170.69 C288.093,1170.3 288.093,1169.65 287.688,1169.25 L287.688,1169.25 Z" id="search" sketch:type="MSShapeGroup"> </path> </g> </g> </g>
+         
+              {% comment %} <path
                 d="M32 30.586l-10.845-10.845c1.771-2.092 2.845-4.791 2.845-7.741 0-6.617-5.383-12-12-12s-12 5.383-12 12c0 6.617 5.383 12 12 12 2.949 0 5.649-1.074 7.741-2.845l10.845 10.845 1.414-1.414zM12 22c-5.514 0-10-4.486-10-10s4.486-10 10-10c5.514 0 10 4.486 10 10s-4.486 10-10 10z"
-              ></path>
+              ></path> {% endcomment %}
             </svg>
             <input name="q" placeholder="Search for rooms..." />
           </label>
         </form>
+        
+        
         <nav class="header__menu">
 
-          <!-- Logged In -->
+{% comment %} when the user is logged in {% endcomment %}
           {% if request.user.is_authenticated %}
           <div class="header__user">
             <a href="profile.html">
@@ -35,7 +44,7 @@
             </button>
           </div>
           {% else %}
-          <!-- Not Logged In -->
+          {% comment %} when no user is logged in {% endcomment %}
           <a href="{% url 'loginurl' %}">
             <img src="{% static 'images/avatar.svg'%}" />
             <p>Login</p>
@@ -65,9 +74,6 @@
               Logout</a
             >
           </div>
-        </nav>
-      </div>
-    </header>
-
-
-
+    </nav>
+  </div>
+</header>

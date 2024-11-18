@@ -2,6 +2,7 @@
 
 :root {
   --color-main: #71c6dd;
+  --color-msg: #b64000;
   --color-main-light: #e1f6fb;
   --color-dark: #3f4156;
   --color-dark-medium: #51546e;
@@ -122,6 +123,16 @@ a {
   color: var(--color-main);
   background: transparent;
   border: 2px solid var(--color-main);
+}
+
+.btn--msg {
+  border-radius: 10rem;
+  font-size: 1.4rem;
+  font-weight: 700;
+  padding: 6px 2.5rem;
+  color: var(--color-msg);
+  background: transparent;
+  border: 2px solid var(--color-msg);
 }
 
 .action-button {
@@ -282,10 +293,10 @@ a {
   align-items: center;
 }
 
-.header__logo > img {
+/* .header__logo > img {
   height: 3.2rem;
   width: 3.2rem;
-}
+} */
 
 .header__logo > h1 {
   font-weight: 700;
@@ -295,18 +306,19 @@ a {
 
 .header__search > label {
   background-color: var(--color-dark-medium);
-  padding: 1.3rem 1rem;
+  padding: 1.3rem 2.5rem;
   display: flex;
+  margin-left: 10rem;
   align-items: center;
   gap: 1rem;
   border-radius: 4px;
 }
 
-.header__search svg {
-  fill: var(--color-gray);
+.header__search svg { 
+  fill: var(--color-dark-light);
   width: 2rem;
   height: 2rem;
-  margin-left: 1rem;
+  margin-left: 0rem;
 }
 
 .header__search input {

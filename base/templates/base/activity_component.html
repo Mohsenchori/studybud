@@ -32,7 +32,7 @@
           <div class="activities__boxContent">
             <p>replied to post “<a href="{% url 'roomurl' latest.room.id  %}">{{latest.room}}</a>”</p>
             <div class="activities__boxRoomContent">
-              {{latest.body}}
+              {{latest.body | truncatechars:27 }}
             </div>
           </div>
         </div>
