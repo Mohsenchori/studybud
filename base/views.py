@@ -6,8 +6,8 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
-from .models import Rooms, Topic, Message, visit
-from .forms import RoomsForm, UserForm
+from .models import Profile, Rooms, Topic, Message, visit
+from .forms import ProfileForm, RoomsForm, UserForm
 
 # we use function based views 
 
@@ -119,10 +119,11 @@ def room(request, pk):
 # user profile view
 def userProfile(request,pk):
     user = User.objects.get(id=pk)
+    profile = Profile.objects.get(user= user)
     rooms = user.rooms_set.all()
     room_messages = user.message_set.all()
     topics = Topic.objects.all()
-    context={'user': user, 'room':rooms, 'latest': room_messages, 'topics': topics}
+    context={'user': user, 'room':rooms, 'latest': room_messages, 'topics': topics, 'profile': profile}
     return render(request,'base/profile.html',context)
 
 # view for creating room, this view reqieres the user to login to be able to access to it
@@ -206,15 +207,24 @@ def deleteComment(request, pk):
 @login_required(login_url='loginurl')
 def updateUser(request):
     user= request.user
-    form = UserForm(instance=user)
+    profile , created = Profile.objects.get_or_create(user = request.user)
+    
+    
     if request.method == 'POST':
-        form = UserForm(request.POST , instance=user)
-        if form.is_valid():
+        form = UserForm(request.POST, instance=user)
+        profile_form = ProfileForm(request.POST, request.FILES, instance=profile )
+    
+        if form.is_valid() and profile_form.is_valid():
             form.save()
+            profile_form.save()
             return redirect('profileurl' , pk = user.id)
+    else: 
+        form = UserForm(instance=user)
+        profile_form = ProfileForm(instance=user.profile)
     context = {
         'user': user,
-        'form' : form
+        'form' : form,
+        'profile_form': profile_form
     }
     return render(request, 'base/update-user.html',context)
 

@@ -7,17 +7,19 @@
               <a href="{% url 'homeurl' %}" class="active">All <span>{{all_rooms}}</span></a>
             </li>
             {% for topic in topics %}
+          <div class="topic_list_one">
             <li>
               <a href="{% url 'homeurl' %}?q={{topic.topic_name}}">{{topic.topic_name}} <span>{{topic.rooms_set.all.count}}</span></a>
             </li>
+          </div>
             {% endfor %}
           </ul>
           <a class="btn btn--link" href="{% url 'topicpageurl' %}">
             More
-            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+            {% comment %} <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
               <title>chevron-down</title>
               <path d="M16 21l-13-13h-3l16 16 16-16h-3l-13 13z"></path>
-            </svg>
+            </svg> {% endcomment %}
           </a>
         </div>
 

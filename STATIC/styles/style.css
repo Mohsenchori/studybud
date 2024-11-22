@@ -1,22 +1,27 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap");
 
+/* dark theme */
 :root {
-  --color-main: #71c6dd;
-  --color-msg: #b64000;
-  --color-main-light: #e1f6fb;
-  --color-dark: #3f4156;
-  --color-dark-medium: #51546e;
-  --color-dark-light: #696d97;
-  --color-light: #e5e5e5;
-  --color-gray: #8b8b8b;
-  --color-light-gray: #b2bdbd;
-  --color-bg: #2d2d39;
-  --color-success: #5dd693;
-  --color-error: #fc4b0b;
+  --color-main: #abea9b;
+  --color-second: #282828;
+  --color-second-medium: #3f3f3f;
+  --color-second-over: #575757;
+  --color-main-text: #e5e5e5;
+  --color-secondary-text: #d2f4c7;
+  --color-third-text: #dbf6d2;
+  --color-bg: #121212;
+  --color-online: #49c800;
+  --color-offline: #121212;
 }
+/* light theme */
+/* [data-theme="light"] {
+  --background-color: #121212;
+  --text-color: #fff;
+  --primary-color: #4e73df;
+  --secondary-color: #f7f7f7;
+} */
 
-/*========== base styles ==========*/
-
+/* base settings */
 * {
   font-family: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
     "Helvetica Neue", sans-serif;
@@ -46,9 +51,9 @@ html {
 
 body {
   line-height: 1.6;
-  font-weight: 400;
+  font-weight: 500;
   font-size: 1.5rem;
-  color: var(--color-light-gray);
+  color: var(--color-third-text);
   background-color: var(--color-bg);
   min-height: 100vh;
 }
@@ -97,16 +102,17 @@ a {
 
 .btn--main {
   background-color: var(--color-main);
-  color: var(--color-dark);
+  color: var(--color-bg);
+  font-weight: bold;
 }
 
 .btn:hover {
-  opacity: 0.9;
+  opacity: 0.7;
 }
 
 .btn--dark {
-  background-color: var(--color-dark-light);
-  color: var(--color-light);
+  background-color: var(--color-second-over);
+  color: var(--color-main-text);
 }
 
 .btn > svg {
@@ -130,23 +136,16 @@ a {
   font-size: 1.4rem;
   font-weight: 700;
   padding: 6px 2.5rem;
-  color: var(--color-msg);
+  color: var(--color-online);
   background: transparent;
-  border: 2px solid var(--color-msg);
-}
-
-.action-button {
-  background: transparent;
-  border: none;
-  outline: none;
-  cursor: pointer;
+  border: 2px solid var(--color-online);
 }
 
 .avatar {
   position: relative;
   display: inline-block;
   border-radius: 50%;
-  border: 2px solid var(--color-main);
+  border: 2px solid var(--color-second-over);
 }
 
 .avatar img {
@@ -160,14 +159,14 @@ a {
   content: "";
   display: block;
   position: absolute;
-  background-color: var(--color-gray);
+  background-color: var(--color-offline);
   z-index: 111;
   border-radius: 50%;
-  border: 0.3rem solid var(--color-dark);
+  border: 0.3rem solid var(--color-second);
 }
 
 .avatar.active::after {
-  background-color: var(--color-success);
+  background-color: var(--color-online);
 }
 
 .avatar.avatar--small img {
@@ -208,7 +207,7 @@ a {
   bottom: 2px;
   right: 3.5px;
 }
-
+/* 
 .scroll::-webkit-scrollbar {
   width: 0.6rem;
   background-color: rgb(41, 41, 46);
@@ -216,15 +215,16 @@ a {
 
 .scroll::-webkit-scrollbar-thumb {
   border-radius: 1rem;
-  background-color: var(--color-gray);
-}
+  background-color: var(--color-online);
+} */
+ 
 
 .dropdown-menu {
   z-index: 111;
   position: absolute;
   top: 5rem;
   right: 0.5rem;
-  background: var(--color-dark-light);
+  background: var(--color-second-over);
   border-radius: 5px;
   box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.15);
   overflow: hidden;
@@ -238,21 +238,21 @@ a {
 .dropdown-menu a {
   padding: 1.2rem 4rem;
   display: block;
-  color: var(--color-light) !important;
+  color: var(--color-main-text) !important;
   font-weight: 500;
   font-size: 1.4rem;
 }
 
 .dropdown-menu a:hover {
-  background-color: var(--color-dark-medium);
+  background-color: var(--color-second-medium);
 }
 
 .dropdown-menu > a:not(:last-child) {
-  border-bottom: 1px solid var(--color-dark-medium);
+  border-bottom: 1px solid var(--color-second-medium);
 }
 
 .dropdown-menu a svg {
-  fill: var(--color-light);
+  fill: var(--color-main-text);
 }
 
 .mobile-menu {
@@ -278,7 +278,7 @@ a {
 
 .header {
   padding: 1.5rem;
-  background-color: var(--color-dark);
+  background-color: var(--color-second);
 }
 
 .header > .container {
@@ -301,21 +301,21 @@ a {
 .header__logo > h1 {
   font-weight: 700;
   font-size: 2rem;
-  color: var(--color-light);
+  color: var(--color-main-text);
 }
 
 .header__search > label {
-  background-color: var(--color-dark-medium);
+  background-color: var(--color-second-medium);
   padding: 1.3rem 2.5rem;
   display: flex;
-  margin-left: 10rem;
+  margin-left: 5rem;
   align-items: center;
   gap: 1rem;
   border-radius: 4px;
 }
 
 .header__search svg { 
-  fill: var(--color-dark-light);
+  fill: var(--color-second-over);
   width: 2rem;
   height: 2rem;
   margin-left: 0rem;
@@ -326,12 +326,24 @@ a {
   background: transparent;
   border: none;
   outline: none;
-  color: var(--color-light);
+  color: var(--color-main-text);
 }
 
 @media screen and (max-width: 800px) {
+  .header__search > label {
+    background-color: var(--color-second-medium);
+    padding: 1.3rem 2.5rem;
+    display: flex;
+    margin-left:0;
+    align-items: center;
+    gap: 1rem;
+    border-radius: 4px;
+  }
+}
+@media screen and (max-width: 800px) {
   .header__search input {
-    width: 20rem;
+    width: 15rem;
+    margin-left: 0rem;
   }
 
   .header > .container {
@@ -362,7 +374,7 @@ a {
   align-items: center;
   font-weight: 500;
   text-decoration: none;
-  color: var(--color-gray);
+  color: var(--color-secondary-text);
 }
 
 .header__menu img {
@@ -383,7 +395,7 @@ a {
 .header__menu svg {
   width: 1.6rem;
   height: 1.6rem;
-  fill: var(--color-dark-light);
+  fill: var(--color-main);
 }
 
 .dropdown-button {
@@ -441,7 +453,7 @@ a {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -46%);
-  background-color: var(--color-dark);
+  background-color: var(--color-second);
   border-radius: 1rem;
   box-shadow: 1px 1px 6px 3px rgba(0, 0, 0, 0.1);
   overflow: hidden;
@@ -450,7 +462,7 @@ a {
 .layout__boxHeader {
   display: flex;
   padding: 1.5rem;
-  background-color: var(--color-dark-light);
+  background-color: var(--color-second-over);
 }
 
 .layout__boxTitle {
@@ -462,7 +474,7 @@ a {
 .layout__boxTitle h3 {
   text-transform: uppercase;
   font-weight: 500;
-  color: var(--color-light);
+  color: var(--color-main-text);
 }
 
 .layout__boxTitle svg {
@@ -510,11 +522,11 @@ a {
 .form__group textarea,
 .form__group select {
   background: transparent;
-  border: 1px solid var(--color-dark-light);
+  border: 1px solid var(--color-second-over);
   padding: 1rem;
   border-radius: 3px;
   width: 100%;
-  color: var(--color-light);
+  color: var(--color-main-text);
   font-weight: 500;
   outline: none;
 }
@@ -531,13 +543,13 @@ a {
 }
 
 .form__group select {
-  color: var(--color-gray);
+  color: var(--color-secondary-text);
   font-weight: 400;
 }
 
 .form__group select option {
-  background-color: var(--color-dark-light);
-  color: var(--color-light);
+  background-color: var(--color-second-over);
+  color: var(--color-main-text);
   padding: 0 10rem;
 }
 
@@ -568,26 +580,35 @@ a {
 =>  Topics
 ================================*/
 
-.topics__header {
-  margin-bottom: 2rem;
+.topics {
+  background: var(--color-second);
+  border-radius: 5px;
+  overflow: hidden;
 }
 
-.topics__header h2 {
+.topics__header {
+  background-color: var(--color-second-over);
+  padding: 1rem 1.5rem;
+  letter-spacing: 1px;
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
   text-transform: uppercase;
   font-weight: 500;
-  color: var(--color-dark-light);
+  color: var(--color-main-text);
 }
+
 
 .topics__list {
   list-style: none;
 }
 
-.topics__list li a {
+.topics a {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 3rem;
+  margin-bottom: 1rem;
+  padding: 1.5rem;
   font-weight: 500;
-  color: var(--color-light-gray);
+  color: var(--color-third-text);
   transition: all 0.3s ease-in-out;
 }
 
@@ -598,8 +619,10 @@ a {
 
 .topics__list li a span {
   padding: 0.5rem 1rem;
-  background-color: var(--color-dark);
+  background-color: var(--color-second-over);
   border-radius: 3px;
+  width: 3rem;
+  text-align: center;
   font-size: 1.3rem;
   font-weight: 700;
   letter-spacing: 1px;
@@ -609,11 +632,12 @@ a {
   text-decoration: underline;
 }
 
+
 .topics-page .topics__list li:not(:last-child) a {
   margin: 2rem 0;
   padding-bottom: 1rem;
   text-decoration: none;
-  border-bottom: 1px solid var(--color-dark-medium);
+  border-bottom: 1px solid var(--color-second-medium);
 }
 
 .topics-page .header__search {
@@ -641,22 +665,25 @@ a {
 .roomList__header h2 {
   text-transform: uppercase;
   font-weight: 500;
-  color: var(--color-light);
+  color: var(--color-main-text);
   letter-spacing: 1px;
 }
 
 .roomList__header p {
   font-weight: 500;
-  color: var(--color-dark-light);
+  color: var(--color-second-over);
 }
 
 /*========== Room List Room ==========*/
 
 .roomListRoom {
   margin-bottom: 2.4rem;
-  background-color: var(--color-dark);
+  background-color: var(--color-second);
   border-radius: 1rem;
-  padding: 2rem;
+  padding-top: 2rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-bottom: 1rem;
 }
 
 .roomListRoom__header {
@@ -698,8 +725,9 @@ a {
 .roomListRoom__content a {
   font-size: 2rem;
   font-weight: 500;
-  margin-bottom: 1.5rem;
-  color: var(--color-light);
+  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
+  color: var(--color-main-text);
   transition: all 0.3s ease-in-out;
 }
 
@@ -708,7 +736,7 @@ a {
 }
 
 .roomListRoom__meta {
-  border-top: 1px solid var(--color-dark-medium);
+  border-top: 1px solid var(--color-second-medium);
   padding-top: 1rem;
   display: flex;
   align-items: center;
@@ -716,7 +744,7 @@ a {
 }
 
 .roomListRoom__joined {
-  color: var(--color-light-gray);
+  color: var(--color-third-text);
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -732,7 +760,7 @@ a {
 
 .roomListRoom__topic {
   padding: 5px 1.5rem;
-  background-color: var(--color-dark-medium);
+  background-color: var(--color-second-over);
   border-radius: 5rem;
   font-weight: 500;
   font-size: 1.3rem;
@@ -743,17 +771,17 @@ a {
 ================================*/
 
 .activities {
-  background: var(--color-dark);
+  background: var(--color-second);
   border-radius: 5px;
   overflow: hidden;
 }
 
 .activities__header h2 {
-  background-color: var(--color-dark-light);
+  background-color: var(--color-second-over);
   text-transform: uppercase;
   font-weight: 500;
   padding: 1rem 1.5rem;
-  color: var(--color-light);
+  color: var(--color-main-text);
   letter-spacing: 1px;
   font-size: 1.4rem;
 }
@@ -761,7 +789,7 @@ a {
 .activities__box {
   margin: 1.5rem;
   padding: 1.5rem;
-  border: 2px solid var(--color-dark-medium);
+  border: 2px solid var(--color-second-medium);
   border-radius: 5px;
 }
 
@@ -771,7 +799,7 @@ a {
 }
 
 .activities__boxHeader p span {
-  color: var(--color-gray);
+  color: var(--color-secondary-text);
   font-size: 1.2rem;
   display: block;
 }
@@ -797,7 +825,7 @@ a {
 }
 
 .roomListRoom__actions svg {
-  fill: var(--color-light-gray);
+  fill: var(--color-third-text);
 }
 
 /*==============================
@@ -878,7 +906,7 @@ a {
 
 .profile__info h3 {
   font-size: 2rem;
-  color: var(--color-light);
+  color: var(--color-main-text);
   font-weight: 400;
 }
 
@@ -894,7 +922,7 @@ a {
 
 .profile__about h3 {
   text-transform: uppercase;
-  color: var(--color-dark-light);
+  color: var(--color-second-over);
   margin-bottom: 0.5rem;
 }
 
@@ -903,7 +931,7 @@ a {
 }
 
 .profile-page .roomList__header h2 {
-  color: var(--color-dark-light);
+  color: var(--color-second-over);
 }
 
 /*==============================
@@ -912,7 +940,7 @@ a {
 
 .room,
 .participants {
-  background: var(--color-dark);
+  background: var(--color-second);
   max-height: 87.5vh;
   border-radius: 0.7rem;
   overflow: hidden;
@@ -931,7 +959,7 @@ a {
 
 .room__top,
 .participants__top {
-  background: var(--color-dark-light);
+  background: var(--color-second-over);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -943,7 +971,7 @@ a {
 .thread__top svg {
   width: 1.6rem;
   height: 1.6rem;
-  fill: var(--color-light);
+  fill: var(--color-main-text);
   cursor: pointer;
 }
 
@@ -957,13 +985,13 @@ a {
 .participants__top {
   text-transform: uppercase;
   font-weight: 500;
-  color: var(--color-light);
+  color: var(--color-main-text);
 }
 
 .room__topLeft svg {
   width: 1.6rem;
   height: 1.6rem;
-  fill: var(--color-light);
+  fill: var(--color-main-text);
 }
 
 .room__topRight {
@@ -980,7 +1008,7 @@ a {
   overflow-y: auto;
   position: absolute;
   width: 95%;
-  background: var(--color-dark);
+  background: var(--color-second);
   z-index: 999;
   top: 4.4rem;
   padding-top: 2rem;
@@ -1025,7 +1053,7 @@ a {
 
 .room__hosted p {
   text-transform: uppercase;
-  color: var(--color-gray);
+  color: var(--color-secondary-text);
   font-size: 1.2rem;
   font-weight: 700;
   line-height: 2;
@@ -1045,8 +1073,8 @@ a {
 
 .room__topics {
   padding: 0.5rem 1.5rem;
-  background: var(--color-dark-light);
-  color: var(--color-light);
+  background: var(--color-second-over);
+  color: var(--color-main-text);
   display: inline-block;
   font-size: 1.4rem;
   border-radius: 1.5rem;
@@ -1062,7 +1090,7 @@ a {
 .threads h3 {
   text-transform: uppercase;
   font-weight: 500;
-  color: var(--color-gray);
+  color: var(--color-secondary-text);
 }
 
 .threads {
@@ -1075,7 +1103,7 @@ a {
 }
 
 .thread {
-  border-left: 2px solid var(--color-dark);
+  border-left: 2px solid var(--color-second);
   padding-left: 1rem;
   margin: 2rem 0;
   padding: 2rem;
@@ -1088,7 +1116,7 @@ a {
 }
 
 .thread__top svg {
-  fill: var(--color-dark-light);
+  fill: var(--color-second-over);
 }
 
 .thread__author {
@@ -1121,8 +1149,8 @@ a {
 
 .room__message > form > input {
   resize: none;
-  background-color: var(--color-dark-light);
-  color: var(--color-light);
+  background-color: var(--color-second-over);
+  color: var(--color-main-text);
   border: none;
   outline: none;
   border-radius: 0.7rem;
@@ -1136,7 +1164,7 @@ a {
 }
 
 .room__message > form > input::placeholder {
-  color: var(--color-light-gray);
+  color: var(--color-third-text);
 }
 
 .participants__top span {
@@ -1165,7 +1193,7 @@ a {
 }
 
 .participant p {
-  color: var(--color-light-gray);
+  color: var(--color-third-text);
   line-height: 1.2;
 }
 

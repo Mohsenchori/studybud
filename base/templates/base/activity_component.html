@@ -8,7 +8,7 @@
           <div class="activities__boxHeader roomListRoom__header">
             <a href="{% url 'profileurl' latest.user.id %}" class="roomListRoom__author">
               <div class="avatar avatar--small">
-                <img src="https://randomuser.me/api/portraits/women/11.jpg" />
+                <img src="{{latest.user.profile.profile_picture.url}}" />
               </div>
               <p>
                 @{{latest.user}}
@@ -30,7 +30,7 @@
         {% endif %}
           </div>
           <div class="activities__boxContent">
-            <p>replied to post “<a href="{% url 'roomurl' latest.room.id  %}">{{latest.room}}</a>”</p>
+            <p>replied to “<a href="{% url 'roomurl' latest.room.id  %}">{{latest.room}}</a>”</p>
             <div class="activities__boxRoomContent">
               {{latest.body | truncatechars:27 }}
             </div>

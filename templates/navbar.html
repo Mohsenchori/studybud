@@ -2,7 +2,7 @@
 <header class="header header--loggedIn">
       
   <div class="container">
-      
+    <button class="btn btn--main">DARKMODE</button>
     {% comment %} go back home {% endcomment %}
         <a href="{% url 'homeurl' %}" class="header__logo">
           {% comment %} <img src="{% static 'images/logo.svg' %}" /> {% endcomment %}
@@ -32,7 +32,7 @@
           <div class="header__user">
             <a href="profile.html">
               <div class="avatar avatar--medium active">
-                <img src="https://randomuser.me/api/portraits/men/37.jpg" />
+                <img src="{{request.user.profile.profile_picture.url}}" />
               </div>
               <p>{{request.user.username}} <span>@{{request.user.username}}</span></p>
             </a>

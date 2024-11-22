@@ -9,6 +9,13 @@ class Topic(models.Model):
     def __str__(self):
         return self.topic_name
 
+# costumized user model
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    profile_picture= models.ImageField(upload_to='profile_pictures/',blank=True, null=True, default='profile_pictures/default-avatar.svg')
+    def __str__(self):
+        return f'{self.user.username} Profile'
+    
 
 class Rooms(models.Model):
     host= models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
@@ -37,3 +44,19 @@ class Message(models.Model):
 
 class visit(models.Model):
     path = models.CharField(max_length=250)
+    
+class Follow (models.Model):
+    follower = models.ForeignKey(User, on_delete=models.CASCADE, related_name= 'following')
+    followed = models.ForeignKey(User, on_delete=models.CASCADE, related_name= 'follower')
+    created_at = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        unique_together = ('follower', 'followed') # prevent duplicate following
+        
+class Notification (models.Model):
+    recipient = models.ForeignKey(User , on_delete=models.CASCADE , related_name='notifications')
+    actor = models.ForeignKey (User, on_delete=models.CASCADE, related_name='activities')
+    message = models.TextField
+    room = models.ForeignKey (Rooms, on_delete=models.CASCADE , null=True, blank= True)
+    is_read = models.BooleanField (default=False)
+    created_at = models.DateTimeField (auto_now_add= True)

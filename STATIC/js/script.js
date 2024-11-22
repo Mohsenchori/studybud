@@ -13,7 +13,7 @@
 // </svg>
 // `;
 
-// const actionButtons = document.querySelectorAll('.action-button');
+
 
 // if (actionButtons) {
 //   actionButtons.forEach(button => {
