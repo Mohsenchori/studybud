@@ -18,8 +18,23 @@
           <div class="profile__info">
             <h3>{{user.username}}</h3>
             <p>@{{user.username}}</p>
+            {%if requested == user %}
             <a href="edit-user.html" class="btn btn--main btn--pill">Edit Profile</a>
+            {% endif %}
             <a href="edit-user.html" class="btn btn--main btn--msg">Send Message</a>
+            {% if requested != user %}
+            <form method = 'POST' action= ''>
+              {% csrf_token %}
+              {% if unique %}  
+              <input type="hidden" name="_method" value="DELETE">
+                <button class="btn btn--main btn--msg" type="submit">unFollow</button>
+              {%else%}
+              <input type="hidden" name="_method" value="POST">
+                <button class="btn btn--main btn--msg" type="submit">Follow</button>
+              {%endif%}
+            </form>
+            {% endif %}
+            {% comment %} <a href="edit-user.html" class="btn btn--main btn--msg">Follow {{user.username}}</a> {% endcomment %}
           </div>
           <div class="profile__about">
             <h3>About</h3>
@@ -33,7 +48,7 @@
 
         <div class="roomList__header">
           <div>
-            <h2>Study Rooms Hosted by dennis_ivy</a>
+            <h2>Rooms Hosted by {{user}}
             </h2>
           </div>
         </div>

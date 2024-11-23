@@ -6,7 +6,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
-from .models import Profile, Rooms, Topic, Message, visit
+from .models import Follow, Notification, Profile, Rooms, Topic, Message, visit
 from .forms import ProfileForm, RoomsForm, UserForm
 
 # we use function based views 
@@ -103,7 +103,7 @@ def room(request, pk):
     visits = visit.objects.filter(path = request.path)
     
     participants = room.participants.all()
-    # hanling new comment
+    # hanling new comment and adding an instance of notification 
     if request.method == 'POST':
         comment = Message.objects.create(
             user = request.user,
@@ -111,6 +111,16 @@ def room(request, pk):
             body = request.POST.get('body')
         )
         room.participants.add(request.user)
+        # followers = request.user.follower
+        followers = Follow.objects.filter(followed = request.user)
+        # if (followers):
+        for follower in followers:
+            Notification.objects.create(
+                recipient = follower.follower,
+                actor = request.user,
+                message = request.POST.get('body'),
+                room = room 
+            )
         #we can do it without redirect but its safer due to posting
         return redirect('roomurl', pk = room.id)
     context = {'room': room ,'comments': comments, 'participants': participants, 'visits' : visits.count}
@@ -119,11 +129,29 @@ def room(request, pk):
 # user profile view
 def userProfile(request,pk):
     user = User.objects.get(id=pk)
+    requested = request.user
     profile = Profile.objects.get(user= user)
     rooms = user.rooms_set.all()
     room_messages = user.message_set.all()
     topics = Topic.objects.all()
-    context={'user': user, 'room':rooms, 'latest': room_messages, 'topics': topics, 'profile': profile}
+    unique = None
+    try :
+        unique = Follow.objects.get(follower = request.user , followed = user)
+    except :
+        pass
+    if request.method == 'POST' and request.POST.get('_method')=='POST':
+        if unique :
+            print('you have followed this user')
+        else : 
+            Follow.objects.create(
+            follower = request.user,
+            followed = user
+        )
+        return redirect('profileurl', pk = user.id)
+    if request.method == 'POST' and request.POST.get('_method')=='DELETE':
+        Follow.objects.get(id=unique.id).delete()
+        return redirect('profileurl', pk= user.id )
+    context={'user': user,'requested':requested, 'room':rooms, 'latest': room_messages, 'topics': topics, 'profile': profile, 'unique': unique}
     return render(request,'base/profile.html',context)
 
 # view for creating room, this view reqieres the user to login to be able to access to it

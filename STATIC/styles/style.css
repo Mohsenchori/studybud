@@ -136,6 +136,7 @@ a {
   font-size: 1.4rem;
   font-weight: 700;
   padding: 6px 2.5rem;
+  margin-top: 1rem;
   color: var(--color-online);
   background: transparent;
   border: 2px solid var(--color-online);
@@ -391,24 +392,41 @@ a {
   font-size: 1.4rem;
   display: block;
 }
-
+/* 
 .header__menu svg {
-  width: 1.6rem;
-  height: 1.6rem;
-  fill: var(--color-main);
-}
+  
+} */
 
 .dropdown-button {
   background: transparent;
   border: 0;
   outline: 0;
   cursor: pointer;
+  width: 1.6rem;
+  height: 1.6rem;
+  fill: var(--color-main);
 }
 
 .dropdown-button:hover svg {
   fill: var(--color-main);
 }
 
+.dropdown-button-second {
+  background: transparent;
+  border: 0;
+  stroke-width: 0.2rem;
+  /* border-color: # 49c800; */
+  /* outline: 1rem;
+  outline: #49c800; */
+  cursor: pointer;
+  width: 2rem;
+  height: 2rem;
+  fill: var(--color-main);
+}
+
+.dropdown-button2:hover svg {
+  fill: var(--color-main);
+}
 /*==============================
 =>  Layout
 ================================*/
@@ -621,7 +639,7 @@ a {
   padding: 0.5rem 1rem;
   background-color: var(--color-second-over);
   border-radius: 3px;
-  width: 3rem;
+  width: 4rem;
   text-align: center;
   font-size: 1.3rem;
   font-weight: 700;

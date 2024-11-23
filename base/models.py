@@ -56,7 +56,7 @@ class Follow (models.Model):
 class Notification (models.Model):
     recipient = models.ForeignKey(User , on_delete=models.CASCADE , related_name='notifications')
     actor = models.ForeignKey (User, on_delete=models.CASCADE, related_name='activities')
-    message = models.TextField
+    message = models.TextField()
     room = models.ForeignKey (Rooms, on_delete=models.CASCADE , null=True, blank= True)
     is_read = models.BooleanField (default=False)
     created_at = models.DateTimeField (auto_now_add= True)
