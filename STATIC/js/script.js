@@ -53,6 +53,15 @@ if (dropdownButton) {
   });
 }
 
+const notificationMenu = document.querySelector(".notification-menu");
+const dropdownButton2 = document.querySelector(".dropdown-button-second");
+
+if (dropdownButton) {
+  dropdownButton2.addEventListener("click", () => {
+    notificationMenu.classList.toggle("show");
+  });
+}
+
 // Upload Image
 const photoInput = document.querySelector("#avatar");
 const photoPreview = document.querySelector("#preview-avatar");

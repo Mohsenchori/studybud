@@ -1,0 +1,32 @@
+{% comment %} based on base/topics_component.html {% endcomment %}
+<div class="topics">
+    <div class="topics__header">
+      <h2>followig</h2>
+    </div>
+    <ul class="topics__list">
+      <li>
+        <a href="{% url 'homeurl' %}" class="active">All followings<span>{{all_rooms}}</span></a>
+      </li>
+      {% for follow in follows %}
+    <div class="topic_list_one">
+      <li>
+        <div class = 'avatar avatar--small'>
+        <img src="{{follow.followed.profile.profile_picture.url}}" />
+        </div>
+        <a href="{% url 'homeurl' %}?q={{topic.topic_name}}">{{follow.followed}} <span>{{follow.followed.activities.count}}</span></a>
+      </li>
+    </div>
+      {% endfor %}
+    </ul>
+    <a class="btn btn--link" href="{% url 'topicpageurl' %}">
+      More
+      {% comment %} <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+        <title>chevron-down</title>
+        <path d="M16 21l-13-13h-3l16 16 16-16h-3l-13 13z"></path>
+      </svg> {% endcomment %}
+    </a>
+  </div>
+
+
+
+

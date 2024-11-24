@@ -4,11 +4,18 @@
    <main class="layout layout--3">
       <div class="container">
 
-
+        <div class = 'container2'>
         <!-- Topics Start -->
-        {% include 'base/topics_component.html' %}
+        <div>
+          {% include 'base/topics_component.html' %}
+        </div>
+        {% if request.user.is_authenticated%}
+        <div>
+          {% include 'base/followed_component.html' %}
+        </div>
+        {% endif %}
         <!-- Topics End -->
-
+        </div>
         <!-- Room List Start -->
         <div class="roomList">
           <div class="mobile-menu">

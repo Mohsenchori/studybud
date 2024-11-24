@@ -87,10 +87,15 @@ def home(request):
     # -created means latests first
     latests = Message.objects.filter(Q(
         room__topic__topic_name__icontains=q
-    )).order_by('-created')
+    )).order_by('-created')[:10]
     
+    # sending followings
+    follows = None
+    if request.user.is_authenticated:
+        follows = request.user.following.all()
     # rendering...
-    context = {'room': rooms, 'topics': topics, 'room_count': room_count, 'latest': latests, 'all_rooms' : Rooms.objects.count()}
+    test = Notification.objects.get(id = 1)
+    context = {'room': rooms,'follows':follows, 'topics': topics, 'room_count': room_count, 'latest': latests, 'all_rooms' : Rooms.objects.count(),'test': test}
     return render(request, 'base/home.html', context)
 
 # room view needs a pk(primary key) to find the chosen room
